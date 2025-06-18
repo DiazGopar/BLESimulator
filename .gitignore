@@ -1,0 +1,104 @@
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+*.xcodeproj/
+*.xcworkspace/
+
+# Xcode
+build/
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/.ropeproject
+
+# Swift
+*.swiftpm/xcode/package.xcworkspace/
+*.swiftpm/config/registries.json
+*.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+*.swiftpm/xcode/package.xcworkspace/xcshareddata/
+*.swiftpm/xcode/xcuserdata/
+
+# Logs
+*.log
+logs/
+
+# Runtime generated files
+*.pid
+*.tmp
+*.temp
+
+# Configuration backups (keep examples)
+ConfigurationExamples/*_backup.json
+ConfigurationExamples/*_temp.json
+
+# Test outputs
+test_output/
+test_results/
+
+# Coverage reports
+coverage/
+*.lcov
+
+# IDE specific files
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*~
+.#*
+\#*#
+.*.swp
+.*.swo
+
+# Documentation build outputs
+docs/_build/
+Documentation/*_generated.md
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# BLE Simulator specific
+# Uncomment if you want to ignore user configurations
+# user_configs/
+# *.user.json

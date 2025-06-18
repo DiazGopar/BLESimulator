@@ -1,0 +1,22 @@
+{
+  "device_info": {
+    "model": "HeartRate Monitor Pro",
+    "manufacturer": "HealthTech",
+    "serial_number": "HR-2025-001"
+  },
+  "measurements": {
+    "heart_rate": 72,
+    "heart_rate_variability": 45.2,
+    "stress_level": "low",
+    "activity_level": "moderate"
+  },
+  "device_status": {
+    "battery_level": 92,
+    "signal_quality": "excellent",
+    "last_sync": "2025-06-18T07:30:00Z"
+  },
+  "user_profile": {
+    "age_range": "25-35",
+    "fitness_level": "intermediate"
+  }
+}

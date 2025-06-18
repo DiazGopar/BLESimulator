@@ -1,0 +1,16 @@
+{
+  "deviceName": "Sensor Simulator",
+  "deviceType": "temperature_humidity",
+  "temperature": 23.5,
+  "humidity": 65.2,
+  "battery": 87,
+  "status": "active",
+  "location": {
+    "latitude": 40.7128,
+    "longitude": -74.0060
+  },
+  "metadata": {
+    "firmware_version": "1.2.3",
+    "last_calibration": "2025-06-15T10:30:00Z"
+  }
+}

@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# Script principal para el BLE Simulator
+# Permite ejecutar comandos desde cualquier ubicación
+
+# Detectar directorio del proyecto
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+echo "🔷 BLE Simulator - Launcher"
+echo "============================"
+echo "📁 Proyecto: $PROJECT_DIR"
+echo ""
+
+# Función para mostrar ayuda
+show_help() {
+    echo "Uso: $0 [comando] [argumentos]"
+    echo ""
+    echo "Comandos disponibles:"
+    echo "  build                    - Compilar la aplicación"
+    echo "  run [archivo.json]       - Ejecutar la aplicación"
+    echo "  demo                     - Demo general"
+    echo "  demo-esp32               - Demo ESP32 LIDAR"
+    echo "  demo-names               - Demo problema nombres BLE"
+    echo "  test                     - Tests generales"
+    echo "  test-esp32               - Test ESP32 específico"
+    echo "  validate                 - Validación completa"
+    echo "  verify-esp32             - Verificar configuración ESP32"
+    echo "  help                     - Mostrar esta ayuda"
+    echo ""
+    echo "Ejemplos:"
+    echo "  $0 build"
+    echo "  $0 run ConfigurationExamples/esp32_lidar_device.json"
+    echo "  $0 demo-esp32"
+    echo ""
+}
+
+# Cambiar al directorio del proyecto
+cd "$PROJECT_DIR"
+
+# Procesar comando
+case "$1" in
+    "build")
+        echo "🔨 Compilando BLE Simulator..."
+        swift build
+        ;;
+    "run")
+        if [ -z "$2" ]; then
+            echo "🚀 Ejecutando BLE Simulator (modo interfaz)..."
+            swift run BLESimulator
+        else
+            echo "🚀 Ejecutando BLE Simulator con configuración: $2"
+            swift run BLESimulator "$2"
+        fi
+        ;;
+    "demo")
+        echo "🎮 Ejecutando demo general..."
+        ./Scripts/demo.sh
+        ;;
+    "demo-esp32")
+        echo "🎯 Ejecutando demo ESP32 LIDAR..."
+        cd Scripts && ./demo_esp32_lidar.sh
+        ;;
+    "demo-names")
+        echo "🏷️  Ejecutando demo problema nombres BLE..."
+        cd Scripts && ./demo_name_issue.sh
+        ;;
+    "test")
+        echo "🧪 Ejecutando tests generales..."
+        cd Scripts && ./test.sh
+        ;;
+    "test-esp32")
+        echo "🎯 Ejecutando test ESP32..."
+        cd Scripts && ./test_esp32.sh
+        ;;
+    "validate")
+        echo "🔍 Ejecutando validación completa..."
+        cd Scripts && ./validate_complete.sh
+        ;;
+    "verify-esp32")
+        echo "✅ Verificando configuración ESP32..."
+        cd Scripts && ./verify_esp32_config.sh
+        ;;
+    "help"|"--help"|"-h")
+        show_help
+        ;;
+    "")
+        echo "❌ Error: No se especificó comando"
+        echo ""
+        show_help
+        exit 1
+        ;;
+    *)
+        echo "❌ Error: Comando desconocido '$1'"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac

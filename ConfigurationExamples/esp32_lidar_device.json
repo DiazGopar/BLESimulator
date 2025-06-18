@@ -1,0 +1,220 @@
+{
+  "device_config": {
+    "name": "SME LIDAR ESP32",
+    "manufacturer": "SME Electronics",
+    "model": "ESP32-LIDAR-V1",
+    "serial_number": "SME001234567"
+  },
+  "ble_config": {
+    "advertised_name": "SME_LIDAR",
+    "service_uuid": "6E400001-B5A3-F393-E0A9-E50E24DCCA9E",
+    "characteristics": [
+      {
+        "uuid": "6E400003-B5A3-F393-E0A9-E50E24DCCA9E",
+        "name": "LIDAR Data TX",
+        "properties": ["notify"],
+        "permissions": ["readable"],
+        "data_key": "lidar_measurements"
+      },
+      {
+        "uuid": "6E400002-B5A3-F393-E0A9-E50E24DCCA9E",
+        "name": "Control Commands RX",
+        "properties": ["write"],
+        "permissions": ["writeable"],
+        "data_key": "control_commands"
+      },
+      {
+        "uuid": "00002A19-0000-1000-8000-00805F9B34FB",
+        "name": "Battery Level",
+        "properties": ["read", "notify"],
+        "permissions": ["readable"],
+        "data_key": "battery_info"
+      }
+    ]
+  },
+  "data_config": {
+    "update_interval_seconds": 0.2,
+    "data_format": "sequence",
+    "auto_cycle": true,
+    "randomize_values": true,
+    "randomize_range": 0.05
+  },
+  "data_streams": {
+    "lidar_measurements": {
+      "type": "sequence",
+      "description": "LIDAR batch data - EXACTLY 40 bytes (20 distance measurements, 2 bytes each in little-endian)",
+      "data": [
+        {
+          "timestamp": "2025-06-18T08:00:00.000Z",
+          "packet_size_bytes": 40,
+          "measurements_count": 20,
+          "encoding": "little_endian",
+          "distances_mm": [1250, 1180, 1320, 980, 1450, 2100, 750, 1600, 1050, 1890, 1240, 1560, 890, 1780, 1420, 920, 1650, 1340, 1110, 1490],
+          "raw_hex_data": "E204AC04280503D405AA0534080EE20340061A040207623A0508037C0522055A036E04",
+          "little_endian_explanation": "Each distance as 2 bytes: 1250=0x04E2 -> E204 (little-endian)",
+          "batch_id": 1,
+          "transmission_enabled": true
+        },
+        {
+          "timestamp": "2025-06-18T08:00:00.200Z",
+          "packet_size_bytes": 40,
+          "measurements_count": 20,
+          "encoding": "little_endian",
+          "distances_mm": [1280, 1150, 1350, 1020, 1480, 2080, 780, 1620, 1080, 1860, 1270, 1590, 920, 1750, 1440, 950, 1680, 1370, 1140, 1520],
+          "raw_hex_data": "00057E04560403C405C80520080C038450043C07F304EE05A6046804DE051C044C054A07",
+          "little_endian_explanation": "Each distance as 2 bytes: 1280=0x0500 -> 0005 (little-endian)",
+          "batch_id": 2,
+          "transmission_enabled": true
+        },
+        {
+          "timestamp": "2025-06-18T08:00:00.400Z",
+          "packet_size_bytes": 40,
+          "measurements_count": 20,
+          "encoding": "little_endian",
+          "distances_mm": [1220, 1190, 1380, 950, 1510, 2050, 720, 1580, 1020, 1920, 1300, 1520, 860, 1790, 1460, 980, 1710, 1390, 1170, 1550],
+          "raw_hex_data": "C404660554050E035E0502080D038C043C056005140550035E066B053A05B403CE05D604",
+          "little_endian_explanation": "Each distance as 2 bytes: 1220=0x04C4 -> C404 (little-endian)",
+          "batch_id": 3,
+          "transmission_enabled": true
+        },
+        {
+          "timestamp": "2025-06-18T08:00:00.600Z",
+          "packet_size_bytes": 40,
+          "measurements_count": 20,
+          "encoding": "little_endian",
+          "distances_mm": [1190, 1220, 1410, 990, 1540, 2020, 740, 1640, 1000, 1950, 1330, 1550, 890, 1820, 1480, 1010, 1740, 1420, 1200, 1580],
+          "raw_hex_data": "660404C4581303DE540704E480036806A605140500367A052C054A056606C40730056405",
+          "little_endian_explanation": "Each distance as 2 bytes: 1190=0x04A6 -> A604 (little-endian)",
+          "batch_id": 4,
+          "transmission_enabled": true
+        },
+        {
+          "timestamp": "2025-06-18T08:00:00.800Z",
+          "packet_size_bytes": 40,
+          "measurements_count": 20,
+          "encoding": "little_endian",
+          "distances_mm": [1160, 1250, 1440, 1030, 1570, 1990, 760, 1660, 970, 1980, 1360, 1580, 920, 1850, 1500, 1040, 1770, 1450, 1230, 1610],
+          "raw_hex_data": "8804E204A005060654073E070F830647C03CA075406045C6A0518050E056A055CE04A306",
+          "little_endian_explanation": "Each distance as 2 bytes: 1160=0x0488 -> 8804 (little-endian)",
+          "batch_id": 5,
+          "transmission_enabled": true
+        }
+      ]
+    },
+    "control_commands": {
+      "type": "object",
+      "description": "Control commands that can be sent to the LIDAR (TRANSMIT_ON/TRANSMIT_OFF)",
+      "data": {
+        "last_command": "TRANSMIT_ON",
+        "command_timestamp": "2025-06-18T08:00:00Z",
+        "transmission_enabled": true,
+        "available_commands": ["TRANSMIT_ON", "TRANSMIT_OFF"],
+        "buffer_threshold_bytes": 40,
+        "dual_buffer_system": true,
+        "command_history": [
+          {
+            "command": "TRANSMIT_ON",
+            "timestamp": "2025-06-18T08:00:00Z",
+            "result": "success"
+          }
+        ]
+      }
+    },
+    "battery_info": {
+      "type": "sequence",
+      "description": "Battery status - updates ONLY when level changes or every hour (not every 200ms)",
+      "update_frequency": "on_change_or_hourly",
+      "data": [
+        {
+          "timestamp": "2025-06-18T08:00:00Z",
+          "battery_level": 95,
+          "voltage_mv": 4150,
+          "charging": false,
+          "estimated_hours": 8.5,
+          "status": "good",
+          "update_reason": "initial_connection",
+          "next_update": "2025-06-18T09:00:00Z"
+        },
+        {
+          "timestamp": "2025-06-18T09:00:00Z",
+          "battery_level": 94,
+          "voltage_mv": 4140,
+          "charging": false,
+          "estimated_hours": 8.2,
+          "status": "good",
+          "update_reason": "hourly_update",
+          "next_update": "2025-06-18T10:00:00Z"
+        },
+        {
+          "timestamp": "2025-06-18T10:00:00Z",
+          "battery_level": 93,
+          "voltage_mv": 4130,
+          "charging": false,
+          "estimated_hours": 7.9,
+          "status": "good",
+          "update_reason": "hourly_update",
+          "next_update": "2025-06-18T11:00:00Z"
+        }
+      ]
+    }
+  },
+  "esp32_specific": {
+    "mtu_size": 185,
+    "uart_baud_rate": 115200,
+    "serial_baud_rate": 230400,
+    "transmission_timing": {
+      "lidar_data_interval_ms": 200,
+      "battery_update_interval_hours": 1,
+      "battery_update_on_change": true,
+      "buffer_size_bytes": 64,
+      "transmission_threshold_bytes": 40
+    },
+    "lidar_protocol": {
+      "header_bytes": [89, 89],
+      "frame_format": "0x59 0x59 [distance_low] [distance_high] [signal_low] [signal_high] [reserved] [checksum]",
+      "data_encoding": "little_endian",
+      "bytes_per_distance": 2,
+      "distances_per_packet": 20,
+      "total_packet_size": 40,
+      "max_distance_mm": 12000,
+      "min_distance_mm": 100
+    },
+    "buffer_management": {
+      "dual_buffer": true,
+      "buffer_1_size": 64,
+      "buffer_2_size": 64,
+      "switch_at_bytes": 40,
+      "data_ready_flag": "data_ready_to_send",
+      "transmission_control": "rxCharacteristicCallBack.isTransmissionEnable()"
+    }
+  },
+  "simulation_notes": {
+    "description": "Exact simulation of ESP32 LIDAR with corrected timing and data format",
+    "key_corrections": [
+      "✅ Data transmission every 200ms (not 100ms)",
+      "✅ Always sends exactly 40 bytes of distance data",
+      "✅ 20 distance measurements per packet (2 bytes each)",
+      "✅ Little-endian encoding for distance values",
+      "✅ Battery updates only when changed or hourly",
+      "✅ Dual buffer system with 40-byte threshold",
+      "✅ TRANSMIT_ON/OFF command control"
+    ],
+    "realistic_features": [
+      "Exact timing matching ESP32 code (200ms intervals)",
+      "Precise data packet size (40 bytes always)",
+      "Authentic little-endian distance encoding",
+      "Battery service with proper update frequency",
+      "Command-controlled transmission like original",
+      "Dual buffer management simulation"
+    ],
+    "testing_instructions": [
+      "1. Connect to SME_LIDAR device",
+      "2. Send 'TRANSMIT_ON' to RX characteristic",
+      "3. Subscribe to TX characteristic",
+      "4. Expect 40-byte packets every 200ms",
+      "5. Each packet contains 20 distance measurements",
+      "6. Battery updates only when level changes or hourly",
+      "7. Send 'TRANSMIT_OFF' to stop data flow"
+    ]
+  }
+}
